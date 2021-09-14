@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Blog</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}/">
+    <script src="{% static 'js/bootstrap.min.js' %}/"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <!-- Optional Themes -->
+    <link rel="stylesheet" href="{% static 'css/themes/beagle.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/beagle.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/bootstrap.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/default.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/default.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/flat.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/flat.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/mani.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/mani.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/roman.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/roman.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/tim.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/tim.min.css'%}">
+
+
+    <!-- Medium Style Editor -->
+    <link rel="stylesheet" href="{% static 'medium-editor-5.23.3/dist/css/medium-editor.css' %}">
+    <link rel="stylesheet" href="{% static 'medium-editor-5.23.3/dist/css/medium-editor.min.css' %}">
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}/">
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Russo+One" rel="stylesheet">
+
+  </head>
+  <body class="load">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light techfont custom-navbar">
+      <div class="container">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="navbar-brand bigbrand" href="{% url 'post_list'%}">My Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'about'%}">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.github.com">Github</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.linkedin.com">Linkedin</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav mr-auto">
+          {% if user.is_authenticated %}
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'post_new'%}">New Post</a>
+
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'post_draft_list' %}">Drafts</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link"> Welcome: {{user.username}}</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <!-- <button style='font-size:24px'>Button <i class='fas fa-street-view'></i></button> -->
+            <!-- <p>Used on a button:</p>
+            <button style='font-size:24px'>Button <i class='far fa-user'></i></button> -->
+            <a class="nav-link" href="{% url 'login'%}"><span class="glyphicon glyphicon-user" aria-hidden='true'></span></a>
+          </li>
+
+          {% endif%}
+        </ul>
+
+      </div>
+
+
+    </nav>
+
+    <!-- CONTENT BLOCK -->
+    <div class="content container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="blog_posts">
+            {% block content %}
+
+            {% endblock %}
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </body>
+</html>
